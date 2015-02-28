@@ -1,0 +1,7 @@
+<batch-artifacts xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    <ref id="myBatchlet" class="org.nailedtothex.example.MyBatchlet"/>
+    <ref id="myItemProcessor" class="org.nailedtothex.example.MyItemProcessor"/>
+
+    <ref id="jdbcItemReader" class="org.jberet.support.io.JdbcItemReader"/>
+    <ref id="jdbcItemWriter" class="org.jberet.support.io.JdbcItemWriter"/>
+</batch-artifacts>
