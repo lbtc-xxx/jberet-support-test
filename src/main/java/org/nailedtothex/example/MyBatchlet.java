@@ -4,21 +4,26 @@ import javax.batch.api.AbstractBatchlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 public class MyBatchlet extends AbstractBatchlet {
+    private static final Logger log = Logger.getLogger(MyBatchlet.class.getName());
+
     @Override
     public String process() throws Exception {
         try (Connection cn = MyDatabaseUtil.getConnection()) {
             try (Statement st = cn.createStatement()) {
                 try {
-                    st.executeUpdate("drop table if exists src");
+                    st.executeUpdate("drop table src");
+                    log.info("drop table succeeded.");
                 } catch (Exception e) {
-                    // nop
+                    log.info("drop table failed.");
                 }
                 try {
-                    st.executeUpdate("drop table if exists dest");
+                    st.executeUpdate("drop table dest");
+                    log.info("drop table succeeded.");
                 } catch (Exception e) {
-                    // nop
+                    log.info("drop table failed.");
                 }
                 st.executeUpdate("create table src (data int)");
                 st.executeUpdate("create table dest (data int primary key)");
